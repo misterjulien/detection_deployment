@@ -16,3 +16,4 @@ with the addition of some logic.
 
 To update the detection database and deploy all detections, delete the 'Repo'
 from the 'detection_repo_tracker' and run the Lambda function.
+
