@@ -2,7 +2,8 @@
 # Author: Eric Julien
 
 resource "aws_ssm_parameter" "detection_deployment_github_pat" {
-  name  = "detection_deployment_github_pat"
+  #name  = "detection_deployment_github_pat"
+  name  = var.github_detection_key_name
   type  = "SecureString"
   value = var.github_detection_key
 

@@ -13,3 +13,7 @@ with the addition of some logic.
 3. If the hashes are different, get the new/updated files from previous commits.
 4. Deploy the new/updated detections to the security tools.
 5. Update the db with the current hash.
+
+To update the detection database and deploy all detections, delete the 'Repo'
+from the 'detection_repo_tracker' and run the Lambda function.
+

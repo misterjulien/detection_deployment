@@ -140,14 +140,20 @@ def get_new_and_updated_detections_from_github(github_pat, current_sha, last_kno
     headers = {'Authorization': f'token {github_pat}'}
     file_list = []
     try:
-        #response = requests.get(f"https://api.github.com/repos/{os.environ['GITHUB_DETECTION_REPO']}/commits/{current_sha}", headers=headers)
-        response = requests.get(f"https://api.github.com/repos/{os.environ['GITHUB_DETECTION_REPO']}/compare/{last_known_sha}...{current_sha}", headers=headers)
-        files = response.json().get('files', [])
+        if last_known_sha == "":
+            response = requests.get(f"https://api.github.com/repos/{os.environ['GITHUB_DETECTION_REPO']}/git/trees/main?recursive=1", headers=headers)
+            file_key = 'path'
+            files = response.json().get('tree', [])
+        else:
+            response = requests.get(f"https://api.github.com/repos/{os.environ['GITHUB_DETECTION_REPO']}/compare/{last_known_sha}...{current_sha}", headers=headers)
+            file_key = 'filename'
+            files = response.json().get('files', [])
+
         for file in files:
             # Only get the detection files
-            if (file.get('filename', '').endswith('.yml')):
+            if (file.get(file_key, '').endswith('.yml')):
                 file_list.append(file)
-                logger.info(f"INFO: detection file - {file.get('filename', '')}")
+                logger.info(f"INFO: detection file - {file.get(file_key, '')}")
         return file_list
     except Exception as e:
         logger.error(f"ERROR: Unable to get new and updated detections from github -  {e}")
@@ -155,7 +161,7 @@ def get_new_and_updated_detections_from_github(github_pat, current_sha, last_kno
 
 def get_detection_file_metadata(github_pat, file_url) -> dict:
     try:
-        # Get the 'content' field from the response, 'content' here is from requests.get(), not the file 'contents'
+        # Get the 'content' field from the response, 'content' here is from requests.get(), not the file 'contents' field
         headers = {'Authorization': f'token {github_pat}'}
         file_response = requests.get(file_url, headers=headers )
         file_response_json = json.loads(file_response.content)
@@ -212,6 +218,8 @@ def deploy_detection_to_splunk(filename_and_path, detection_file, event):
     
     if not event.get('preview_only', ''):
         print("Deploying detection to Splunk")
+        # no Splunk instance to test on
+        return True
         
         splunk_url = f"https://{os.environ['SPLUNK_HOST_AND_PORT']}/services/saved/searches"
         headers = {
@@ -254,16 +262,28 @@ def remove_detection_from_splunk(filename_and_path):
 def remove_from_file_tracker():
     pass
 
-def update_file_tracker_item(path, sha, search) -> None:
+def update_file_tracker_item(path, sha, detection_file) -> None:
     try:
-        # Check if the 'path' already exists, does it overwrite it or does it create a new entry
-        put_item_response = DYNAMODB_CLIENT.put_item(
+        # These keys might change depending on what field you have in your yaml.
+        DYNAMODB_CLIENT.put_item(
             TableName=os.environ['DYNAMODB_DETECTION_FILE_TABLE'],
             Item = {
-                'repo':         {'S': os.environ['GITHUB_DETECTION_REPO']},
-                'filename':     {'S': path},
-                'commit_sha':   {'S': sha},
-                'search':       {'S': search}
+                'repo':             {'S': os.environ['GITHUB_DETECTION_REPO']},
+                'filename':         {'S': path},
+                'commit_sha':       {'S': sha},
+                'title':            {'S': yaml.safe_load(detection_file).get('title', '')},
+                'id':               {'S': yaml.safe_load(detection_file).get('id', '')},
+                'status':           {'S': yaml.safe_load(detection_file).get('status', '')},
+                'description':      {'S': yaml.safe_load(detection_file).get('description', '')},
+                'author':           {'S': yaml.safe_load(detection_file).get('author', '')},
+                'date':             {'S': yaml.safe_load(detection_file).get('date', '')},
+                'modified':         {'S': yaml.safe_load(detection_file).get('modified', '')},
+                'tags':             {'SS': yaml.safe_load(detection_file).get('tags', '')},
+                'log_product':      {'S': yaml.safe_load(detection_file).get('logsource', '').get('product', '')},
+                'log_service':      {'S': yaml.safe_load(detection_file).get('logsource', '').get('service', '')},
+                'search':           {'S': yaml.safe_load(detection_file).get('search', '')},
+                'falsepositives':   {'SS': yaml.safe_load(detection_file).get('falsepositives', '')},
+                'level':            {'S': yaml.safe_load(detection_file).get('level', '')},   
             }
         )
     except Exception as e:
@@ -322,45 +342,43 @@ def lambda_handler(event, context):
             logger.error(f"ERROR: Unable to deploy all detections to Splunk")
         return # Don't need to do the below if we're doing the above
     
-    ## Check github for new or updated detections
-    logger.info(f"INFO: Getting new and updated detections and deploying them to Splunk")
-    # Get the SHA of the base branch
-    current_sha = get_current_commit_sha_from_github(github_pat)
-    # Get the last known SHA of the base branch from the database
-    last_known_sha = get_last_commit_sha_from_db()
 
-    # If no SHA found in db for the repo Put the current SHA in the db and deploy detections
-    if not last_known_sha:
-        put_commit_sha_in_detection_repo_table(current_sha)
-    else:
-        # Compare current SHA with last know SHA.  If SHA values are the same, then nothing to do
-        if compare_sha_values(current_sha, last_known_sha) == 0:
-            logger.info(f"INFO: No new or updated detections, so exiting process")
-            return
+    logger.info(f"INFO: Getting new and updated detections and deploying them to Splunk")
+    current_sha = get_current_commit_sha_from_github(github_pat) # Get the SHA of the base branch
+    last_known_sha = get_last_commit_sha_from_db() # Get the last known SHA of the base branch from the database
+
+    # Compare current SHA with last know SHA.  If SHA values are the same, then nothing to do
+    if compare_sha_values(current_sha, last_known_sha) == 0:
+        logger.info(f"INFO: No new or updated detections, so exiting process")
+        return
 
     # If we've gotten to here, then we have new/updated detections
-    ## Deploy Detections to Splunk
-    # TODO: Send notification to messaging system saying we have new/updated files
-    
-    # Get new and updated detection info
     file_list = get_new_and_updated_detections_from_github(github_pat, current_sha, last_known_sha)
     
-    # For file in the list of new/updated detections, deploy the detection to Splunk
+    # Deploy each detection to Splunk
     for file in file_list: 
         filename_and_path = ''
-        file_status = file.get('status', '')
+        file_status = file.get('status', 'entire_tree')
 
-        file_response_json = get_detection_file_metadata(github_pat, file.get('contents_url', ''))
+        if file_status == 'entire_tree':
+            # When we get the entire repo tree, we get different key names
+            contents_url = 'url' 
+        else:
+            contents_url = 'contents_url'
+
+        file_response_json = get_detection_file_metadata(github_pat, file.get(contents_url, ''))
         detection_file = get_detection_file_contents(file_response_json)    
         splunk_search = get_splunk_search(detection_file)
         
         # Push new/updated detections to Splunk
-        if file_status in ['added', 'modified']:
-            if deploy_detection_to_splunk(file_response_json.get('path', ''), splunk_search, event):
+        if file_status in ['added', 'modified', 'entire_tree']:
+            path = file_response_json.get('path', file.get('path',''))
+            if deploy_detection_to_splunk(path, detection_file, event):
                 # If successful, then update the SHA in dynamodb
-                update_file_tracker_item(file_response_json.get('path', ''), file_response_json.get('sha', ''), splunk_search)
+                #update_file_tracker_item(path, file_response_json.get('sha', ''), splunk_search)
+                update_file_tracker_item(path, file_response_json.get('sha', ''), detection_file)
             else:
-                logger.error(f"ERROR: Unable to deploy detection to Splunk -  {file_response_json.get('path', '')}")
+                logger.error(f"ERROR: Unable to deploy detection to Splunk -  {path}")
                 deployment_error = True
         # Remove detections from Splunk
         elif file_status in ['renamed', 'removed']:
@@ -368,10 +386,14 @@ def lambda_handler(event, context):
             remove_from_file_tracker()  
         else: 
             logger.info(f"INFO: Unknown status for detection file")
+
     if not deployment_error:
         put_commit_sha_in_detection_repo_table(current_sha)
     else:
         logger.error(f"ERROR: Unable to deploy all detections to Splunk")
+    
+    # TODO: Send notification to messaging system saying we have new/updated files
+
 
     #TEST
     #headers = {'Authorization': f'token {github_pat}'}

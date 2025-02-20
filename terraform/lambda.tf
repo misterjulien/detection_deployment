@@ -16,9 +16,10 @@ resource "aws_lambda_function" "detection_deployment_lambda" {
   function_name = "detection_deployment_lambda"
   role          = aws_iam_role.detection_deployment_lambda_role.arn
   handler       = "detection_deployment.lambda_handler"
-  runtime       = "python3.9"
+  runtime       = "python3.10"
   timeout       = "900"
   memory_size   = 256
+  layers        = [aws_lambda_layer_version.yaml_layer.arn]
 
   source_code_hash = data.archive_file.lambda.output_base64sha256
 
@@ -33,4 +34,12 @@ resource "aws_lambda_function" "detection_deployment_lambda" {
         SPLUNK_TOKEN_NAME = var.splunk_token_name
     }
   }
+}
+
+resource "aws_lambda_layer_version" "yaml_layer" {
+  filename   = "yaml_layer.zip"
+  layer_name = "python_yaml"
+  compatible_architectures = ["x86_64"]
+
+  compatible_runtimes = ["python3.10"]
 }
