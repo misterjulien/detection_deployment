@@ -1,0 +1,18 @@
+{
+    'name': 'aws_config_disable_recording.yml', 
+    'path': 'rules/cloud/aws/aws_config_disable_recording.yml', 
+    'sha': '00040dcf648a79566a590b4c7859c7c4dfb34b29', 
+    'size': 655, 
+    'url': 'https://api.github.com/repos/misterjulien/detection_library_poc/contents/rules/cloud/aws/aws_config_disable_recording.yml?ref=f6a23742a3521153ca69a128e94432eb125870e4', 
+    'html_url': 'https://github.com/misterjulien/detection_library_poc/blob/f6a23742a3521153ca69a128e94432eb125870e4/rules/cloud/aws/aws_config_disable_recording.yml', 
+    'git_url': 'https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/00040dcf648a79566a590b4c7859c7c4dfb34b29', 
+    'download_url': 'https://raw.githubusercontent.com/misterjulien/detection_library_poc/f6a23742a3521153ca69a128e94432eb125870e4/rules/cloud/aws/aws_config_disable_recording.yml', 
+    'type': 'file', 
+    'content': 'dGl0bGU6IEFXUyBDb25maWcgRGlzYWJsaW5nIENoYW5uZWwvUmVjb3JkZXIK\naWQ6IDA3MzMwMTYyLWRiYTEtNDc0Ni04MTIxLWE5NjQ3ZDQ5ZDI5NwpzdGF0\ndXM6IHRlc3QKZGVzY3JpcHRpb246IERldGVjdHMgQVdTIENvbmZpZyBTZXJ2\naWNlIGRpc2FibGluZyAodGFrZW4gZnJvbSBzaWdtYS9ydWxlcy9jbG91ZC9h\nd3MvYXdzX2NvbmZpZ19kaXNhYmxlX3JlY29yZGluZy55bWwpCmF1dGhvcjog\ndml0YWxpeTB4MQpkYXRlOiAyMDIwLzAxLzIxCm1vZGlmaWVkOiAyMDIyLzEw\nLzA5CnRhZ3M6CiAgICAtIGF0dGFjay5kZWZlbnNlX2V2YXNpb24KICAgIC0g\nYXR0YWNrLnQxNTYyLjAwMQpsb2dzb3VyY2U6CiAgICBwcm9kdWN0OiBhd3MK\nICAgIHNlcnZpY2U6IGNsb3VkdHJhaWwKZGV0ZWN0aW9uOgogICAgc2VsZWN0\naW9uX3NvdXJjZToKICAgICAgICBldmVudFNvdXJjZTogY29uZmlnLmFtYXpv\nbmF3cy5jb20KICAgICAgICBldmVudE5hbWU6CiAgICAgICAgICAgIC0gRGVs\nZXRlRGVsaXZlcnlDaGFubmVsCiAgICAgICAgICAgIC0gU3RvcENvbmZpZ3Vy\nYXRpb25SZWNvcmRlcgogICAgY29uZGl0aW9uOiBzZWxlY3Rpb25fc291cmNl\nCmZhbHNlcG9zaXRpdmVzOgogICAgLSBWYWxpZCBjaGFuZ2UgaW4gQVdTIENv\nbmZpZyBTZXJ2aWNlCmxldmVsOiBoaWdoCg==\n', 
+    'encoding': 'base64', 
+    '_links': {
+        'self': 'https://api.github.com/repos/misterjulien/detection_library_poc/contents/rules/cloud/aws/aws_config_disable_recording.yml?ref=f6a23742a3521153ca69a128e94432eb125870e4', 
+        'git': 'https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/00040dcf648a79566a590b4c7859c7c4dfb34b29', 
+        'html': 'https://github.com/misterjulien/detection_library_poc/blob/f6a23742a3521153ca69a128e94432eb125870e4/rules/cloud/aws/aws_config_disable_recording.yml'
+    }
+}

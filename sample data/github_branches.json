@@ -1,0 +1,101 @@
+{
+    "name": "main",
+    "commit": {
+        "sha": "1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+        "node_id": "C_kwDOKMnWhdoAKDFjOWIyOGY5NWY1ZDliM2M3YjBiYTY4Yzg0NDQwODdlZjliYjExZDU",
+        "commit": {
+            "author": {
+                "name": "misterjulien",
+                "email": "misterjulien@gmail.com",
+                "date": "2023-09-01T03:44:53Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2023-09-01T03:44:53Z"
+            },
+            "message": "Merge pull request #2 from misterjulien/branch2\\n\\nUpdate aws_cloudtrail_disable_logging.yml",
+            "tree": {
+                "sha": "7a7d6ccf13014ed292c0e764a7c7dd9466d71f84",
+                "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/7a7d6ccf13014ed292c0e764a7c7dd9466d71f84"
+            },
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/commits/1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\\n\\nwsBcBAABCAANu3wOBd+Wgl7nihw21HkM5OaCtcgF6K1D5EGMl5Ru4kqAzYzK5eC4d9PQE\\nQga8Rg4VD4CyOskqjxp/dylcgp3TEFVbQYNg+ctfx4OJP86thse675pU85VS99QE\\nn+e7dBaTG9AFyt+qxRZCYk5XgE8gUPO3VYhNFY1UgU3artzB9b42A68mll5hZZQ=\\n=NHXb\\n-----END PGP SIGNATURE-----\\n",
+                "payload": "tree 7a7d6ccf13014ed292c0e764a7c7dd9466d71f84\\nparent f6a23742a3521153ca69a128e94432eb125870e4\\nparent 13783ff04bdedc5c91e516bf12f47e8b6a5f0b9e\\nauthor misterjulien <misterjulien@gmail.com> 1693539893 -0400\\ncommitter GitHub <noreply@github.com> 1693539893 -0400\\n\\nMerge pull request #2 from misterjulien/branch2\\n\\nUpdate aws_cloudtrail_disable_logging.yml"
+            }
+        },
+        "url": "https://api.github.com/repos/misterjulien/detection_library_poc/commits/1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+        "html_url": "https://github.com/misterjulien/detection_library_poc/commit/1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+        "comments_url": "https://api.github.com/repos/misterjulien/detection_library_poc/commits/1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5/comments",
+        "author": {
+            "login": "misterjulien",
+            "id": 1956879,
+            "node_id": "MDQ6VXNlcjE5NTY4Nzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1956879?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/misterjulien",
+            "html_url": "https://github.com/misterjulien",
+            "followers_url": "https://api.github.com/users/misterjulien/followers",
+            "following_url": "https://api.github.com/users/misterjulien/following{/other_user}",
+            "gists_url": "https://api.github.com/users/misterjulien/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/misterjulien/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/misterjulien/subscriptions",
+            "organizations_url": "https://api.github.com/users/misterjulien/orgs",
+            "repos_url": "https://api.github.com/users/misterjulien/repos",
+            "events_url": "https://api.github.com/users/misterjulien/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/misterjulien/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "f6a23742a3521153ca69a128e94432eb125870e4",
+                "url": "https://api.github.com/repos/misterjulien/detection_library_poc/commits/f6a23742a3521153ca69a128e94432eb125870e4",
+                "html_url": "https://github.com/misterjulien/detection_library_poc/commit/f6a23742a3521153ca69a128e94432eb125870e4"
+            },
+            {
+                "sha": "13783ff04bdedc5c91e516bf12f47e8b6a5f0b9e",
+                "url": "https://api.github.com/repos/misterjulien/detection_library_poc/commits/13783ff04bdedc5c91e516bf12f47e8b6a5f0b9e",
+                "html_url": "https://github.com/misterjulien/detection_library_poc/commit/13783ff04bdedc5c91e516bf12f47e8b6a5f0b9e"
+            }
+        ]
+    },
+    "_links": {
+        "self": "https://api.github.com/repos/misterjulien/detection_library_poc/branches/main",
+        "html": "https://github.com/misterjulien/detection_library_poc/tree/main"
+    },
+    "protected": true,
+    "protection": {
+        "enabled": true,
+        "required_status_checks": {
+            "enforcement_level": "off",
+            "contexts": [],
+            "checks": []
+        }
+    },
+    "protection_url": "https://api.github.com/repos/misterjulien/detection_library_poc/branches/main/protection"
+}

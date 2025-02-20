@@ -1,0 +1,61 @@
+https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/main?recursive=0
+{
+    "sha": "1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+    "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/1c9b28f95f5d9b3c7b0ba68c8444087ef9bb11d5",
+    "tree": [
+        {
+            "path": "README.md",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "117a852a05cde6350040e60f42b0037566a3efb4",
+            "size": 95,
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/117a852a05cde6350040e60f42b0037566a3efb4"
+        },
+        {
+            "path": "rules",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "70d2c2039714712694a7f51f38b92f16123347b1",
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/70d2c2039714712694a7f51f38b92f16123347b1"
+        },
+        {
+            "path": "rules/cloud",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "04d7af6f067d34157050c8e55e846ef65ba0bff4",
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/04d7af6f067d34157050c8e55e846ef65ba0bff4"
+        },
+        {
+            "path": "rules/cloud/aws",
+            "mode": "040000",
+            "type": "tree",
+            "sha": "5c06ae9b4294fa0d5784aedeb4906db173840c77",
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/trees/5c06ae9b4294fa0d5784aedeb4906db173840c77"
+        },
+        {
+            "path": "rules/cloud/aws/aws_cloudtrail_disable_logging.yml",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "7785cf1e1212392b85f45019932bdd9e5b0056fa",
+            "size": 717,
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/7785cf1e1212392b85f45019932bdd9e5b0056fa"
+        },
+        {
+            "path": "rules/cloud/aws/aws_config_disable_recording.yml",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "00040dcf648a79566a590b4c7859c7c4dfb34b29",
+            "size": 655,
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/00040dcf648a79566a590b4c7859c7c4dfb34b29"
+        },
+        {
+            "path": "rules/cloud/aws/aws_delete_identity.yml",
+            "mode": "100644",
+            "type": "blob",
+            "sha": "fc4f7caf4b9ebb5f1f107eaab8f8832b0c6ecc59",
+            "size": 748,
+            "url": "https://api.github.com/repos/misterjulien/detection_library_poc/git/blobs/fc4f7caf4b9ebb5f1f107eaab8f8832b0c6ecc59"
+        }
+    ],
+    "truncated": false
+}
