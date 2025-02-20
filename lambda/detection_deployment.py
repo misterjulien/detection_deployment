@@ -281,7 +281,7 @@ def update_file_tracker_item(path, sha, detection_file) -> None:
                 'tags':             {'SS': yaml.safe_load(detection_file).get('tags', '')},
                 'log_product':      {'S': yaml.safe_load(detection_file).get('logsource', '').get('product', '')},
                 'log_service':      {'S': yaml.safe_load(detection_file).get('logsource', '').get('service', '')},
-                'search':           {'S': yaml.safe_load(detection_file).get('search', '')},
+                'search':           {'S': yaml.safe_load(detection_file).get('detection', '').get('splunk', '')},
                 'falsepositives':   {'SS': yaml.safe_load(detection_file).get('falsepositives', '')},
                 'level':            {'S': yaml.safe_load(detection_file).get('level', '')},   
             }
