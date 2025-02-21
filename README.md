@@ -19,6 +19,6 @@ To update the detection database and deploy all detections, delete the 'Repo'
 from the 'detection_repo_tracker' and run the Lambda function.
 
 ## TODO
-The code to deploy to Splunk is not complete, so you'll need to update that if you're 
-deploying to your own Splunk instance.  It's possible to deploy to multiple security tools 
-with the addition of some logic.
+- Add functionality to actually deploy detections to Splunk (or any other SIEM).
+- Add functionality to send notifications to Slack (or any other messaging system).
+
