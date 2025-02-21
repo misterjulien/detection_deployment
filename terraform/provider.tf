@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "your-bucket-tfstate"
+    bucket = "your-bucket-tfstate" # change this to your environment
     key    = "detection_deployment-state"
     region = "us-east-1"
   }
@@ -14,7 +14,12 @@ terraform {
 
 
 provider "aws" {
-    # Configuration options
-    #region = var.region
+    region = var.region
     #profile = var.profile
+
+    default_tags {
+      tags = {
+        project = "Detection Deployment"
+      }
+    }
 }
